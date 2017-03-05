@@ -5,196 +5,91 @@
 		<title></title>
 	</head>
 	<style>
+	body{padding: 0;margin: 0;background: black;}
+	#c1{background: white;}
 	</style>
 	<script>
-	var oMap=null;//地图对象
-	var oFood=null;//食物对象
-	var oSnake=null;//蛇对象
-	var timer=null;//定义定时器
-	//定义地图类
-	function Map(){
-		this.width=800;//地图的宽
-		this.height=400;//地图的高
-		this.color="#dddddd";//地图的背景颜色
-		this._map=null;//地图的div元素
-		
-		this.display=function(){
-			this._map=document.createElement('div');
-			this._map.style.width=this.width+'px';
-			this._map.style.height=this.height+'px';
-			this._map.style.background=this.color;
-			this._map.style.position='absolute';
-			this._map.style.overflow='hidden';
-			this._map.style.left='300px';
-			this._map.style.top='100px';
-			document.getElementsByTagName('body')[0].appendChild(this._map);
-		};
-	}
-	//定义食物类
-	function Food(){
-		this.width=20;//食物的宽度
-		this.height=20;//食物的高
-		this.color="green";//食物的颜色
-		this.x=0;//食物位于x方向第几个格
-		this.y=0;//食物位于y方向第几个格
-		this._food=null;//食物的div元素
-		this.sum=0;//食物的个数
-		
-		this.display=function(){
-			//食物的div元素只需创建一次,无需反复创建
-			if(this._food==null){
-				this._food=document.createElement('div');
-				this._food.style.width=this.width+'px';
-				this._food.style.height=this.height+'px';
-				this._food.style.background=this.color;
-				this._food.style.position='absolute';
-				this._food.style.borderRadius='50%';
-				oMap._map.appendChild(this._food);
-			}
-			//以下的需要反复创建
-			this.x=Math.round(Math.random()*39);
-			this.y=Math.round(Math.random()*19);
-			this._food.style.left=this.x*this.width+'px';
-			this._food.style.top=this.y*this.height+'px';
-			document.title='您的得分为'+this.sum*10+'~~'
-		}
-	}
-	//定义蛇类
-	function Snake(){
-		this.width=20;
-		this.height=20;
-		this.color='blue';
-		this.direct=1;//蛇移动方向，默认向右，0表示上，1表示右，2表示下，3表示左
-		//body表示蛇的身体，由若干个div组成，用二维数组定义每一个蛇节的坐标
-		//默认三个蛇节，第一个表示蛇头
-		this.body=[[4,3,'red',null],[3,3,'blue',null],[2,3,'blue',null]];
-		
-		this.display=function(){
-			for(var i=0;i<this.body.length;i++){
-				if(this.body[i][3]==null){
-					this.body[i][3]=document.createElement('div');
-					this.body[i][3].style.width=this.width+'px';
-					this.body[i][3].style.height=this.height+'px';
-					this.body[i][3].style.background=this.body[i][2];
-					this.body[i][3].style.position='absolute';
-					this.body[i][3].style.borderRadius='50%';
-					oMap._map.appendChild(this.body[i][3]);
+		window.onload=function(){
+			var oC=document.getElementById('c1');
+			var ctx=oC.getContext('2d');
+			function toDraw(){
+				var x=200;
+				var y=200;
+				var r=150;
+				var Pi=Math.PI;
+				
+				var oDate=new Date();
+				var oHours=oDate.getHours();
+				var oMins=oDate.getMinutes();
+				var oSecs=oDate.getSeconds();
+				
+				var oHoursValue=(-90+oHours*30+oMins/60*30+oSecs/3600*30)*Pi/180;
+				var oMinsValue=(-90+oMins*6+oSecs/3600*6)*Pi/180;
+				var oSecssValue=(-90+oSecs*6)*Pi/180;
+				
+				ctx.clearRect(0,0,oC.width,oC.height);
+				
+				ctx.strokeStyle='black';
+				ctx.beginPath();
+				for(var i=0;i<60;i++){
+					ctx.moveTo(x,y);
+					ctx.arc(x,y,r,6*Pi*(i)/180,6*Pi*(i+1)/180,false);				
 				}
-				this.body[i][3].style.left=this.body[i][0]*this.width+'px';
-				this.body[i][3].style.top=this.body[i][1]*this.height+'px';
-			}
-		}
-		this.move=function(){
-			this.setDirect();
-			for(var i=this.body.length-1;i>0;i--){
-				this.body[i][0]=this.body[i-1][0];
-				this.body[i][1]=this.body[i-1][1];
-			}
-			switch(this.direct){
-				case 1:
-					this.body[0][0]++;
-					break;
-				case 3:
-					this.body[0][0]--;
-					break;
-				case 0:
-					this.body[0][1]--;
-					break;
-				case 2:
-					this.body[0][1]++;
-					break;
-				default:
-					break;
-			}
-			//蛇吃食物
-			if(this.body[0][0]==oFood.x && this.body[0][1]==oFood.y){
-				var len=this.body.length-1;
-				var x=this.body[len][0];
-				var y=this.body[len][1];
-				this.body.push([x,y,'blue',null]);
-				oFood.sum++;
-				oFood.display();
-			}
-			//判断是否撞墙
-			if(this.body[0][0]>39 || this.body[0][0]<0 || this.body[0][1]>19 || this.body[0][1]<0){				
-				clearInterval(timer);
-				if(confirm('撞墙了！GAME OVER ,您的得分为'+oFood.sum*10+'~重新开始吗？')){
-						start();
-				}else{
-					return false;
+				ctx.closePath();
+				ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.fillStyle='white';
+				ctx.arc(x,y,r-10,0,360*Pi/180,false);
+				ctx.closePath();
+				ctx.fill();
+				
+				ctx.beginPath();
+				for(var i=0;i<15;i++){
+					ctx.moveTo(x,y);
+					ctx.arc(x,y,r,30*Pi*(i)/180,30*Pi*(i+1)/180,false);				
 				}
+				ctx.closePath();
+				ctx.stroke();
+				
+				ctx.beginPath();
+				ctx.fillStyle='white';
+				ctx.arc(x,y,r-20,0,360*Pi/180,false);
+				ctx.closePath();
+				ctx.fill();
+				
+				//时针
+				ctx.beginPath();
+				ctx.lineWidth='5';
+				ctx.moveTo(x,y);
+				ctx.arc(x,y,r-90,oHoursValue,oHoursValue,false);
+				ctx.closePath();
+				ctx.stroke();
+				
+				//画分针
+				ctx.beginPath();
+				ctx.lineWidth='3';
+				ctx.moveTo(x,y);
+				ctx.arc(x,y,r-60,oMinsValue,oMinsValue,false);
+				ctx.closePath();
+				ctx.stroke();
+				
+				//画秒针
+				ctx.beginPath();
+				ctx.lineWidth='1';
+				ctx.strokeStyle='red';
+				ctx.moveTo(x,y);
+				ctx.arc(x,y,r-30,oSecssValue,oSecssValue,false);
+				ctx.closePath();
+				ctx.stroke();
 			}
-			//判断是否吃到自己,蛇头不可能吃到自己和后面的第一个和第二个蛇节
-			for(var i=this.body.length-1;i>2;i--){
-				if(this.body[0][0]==this.body[i][0] && this.body[0][1]==this.body[i][1]){
-					clearInterval(timer);
-					if(confirm('咬到自己了！GAME OVER ,您的得分为'+oFood.sum*10+'~重新开始吗？')){
-						start();
-					}else{
-						return false;
-					}
-				}
-			}
-			this.display();
+			toDraw();
+			setInterval(toDraw,1000);
+			
 		}
-		this.setDirect=function(num){
-			switch(num){
-				case 37:
-					if(this.direct!=1){
-						this.direct=3;
-					}else if(this.direct==3){
-						break;
-					}
-					break;
-				case 38:
-					if(this.direct!=2){
-						this.direct=0;
-					}else if(this.direct==0){
-						break;
-					}
-					break;
-				case 39:
-					if(this.direct!=3){
-						this.direct=1;
-					}else if(this.direct==1){
-						break;
-					}
-					break;
-				case 40:
-					if(this.direct!=0){
-						this.direct=2;
-					}else if(this.direct==2){
-						break;
-					}
-					break;
-				default:
-					break;
-			}
-		}
-	}
-	function start(){
-		//创建地图实例
-		oMap=new Map();
-		oMap.display();
-		//创建食物实例
-		oFood=new Food();
-		oFood.display();
-		//创建蛇实例
-		oSnake=new Snake();
-		oSnake.display();
-		document.getElementsByTagName('body')[0].onkeydown=function(ev){
-			var ev=ev || event;
-			oSnake.setDirect(ev.keyCode);
-		}
-		timer=setInterval('oSnake.move()',140);
-	}
-	window.onload=function(){
-		
-		start();
-		
-	}
 	</script>
 	<body>
-		
+		<!--默认宽300，高150-->
+		<canvas id="c1" width="400px" height="400px"></canvas>
 	</body>
 </html>
