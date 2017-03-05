@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理页面</title>
+</head>
+<body>
+    {%if userInfo.isAdmin%}
+    <span>欢迎你，管理员</span>
+    {%else%}
+    <span>你不是管理员</span>
+    {%endif%}
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>毕设2.0</title>
+    <script src="../../public/js/jquery-1.9.1.min.js"></script>
+</head>
+<link rel="stylesheet" href="../../public/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../../public/css/main.css"/>
+<body>
+    <header class="">
+        <div class="headList wrap">
+            <span id="topTime" class="fl">2017年1月1日 星期一</span>
+            <a href="#" class="fr opinion">给本站提意见</a>
+            {%if userInfo._id %}
+            <a href="/mycenter?myid={{userInfo._id}}" class="fr lgRe">我的个人中心</a>
+            {%else%}
+            <a href="/api/login" class="fr lgRe">登录/注册</a>
+            {%endif%}
+        </div>
+    </header>
+
+    <div id="webLogo">
+        <div class="wrap"><h1>校园失物招领平台</h1></div>
+    </div>
+
+    <nav class="wrap clearfloat">
+        <span id="webTitle">校园失物招领平台</span>
+        <ul class="navList1">
+            <li><a href="/?p=0&cate=all">首 页</a></li>
+            <li><a href="/lost?p=1&cate=lost">失物启事</a></li>
+            <li><a href="/found?p=2&cate=found">招领启事</a></li>
+            <li><a href="/news?p=3">新闻中心</a></li>
+            <li><a href="/publish?p=4">发布启事</a></li>
+        </ul>
+        <div class="fr search"><span>搜索</span><form action="#" class="search_form"><input type="text" class="search_val" name="searchVal" placeholder="请输入搜索内容"><input type="submit" class="search_btn" value="搜索"></form></div>
+        <span class="glyphicon glyphicon-th-list fr"></span>
+        <ul class="navList2">
+            <li><a href="/?p=0&cate=all">首 页</a></li>
+            <li><a href="/lost?p=1&cate=lost">失物启事</a></li>
+            <li><a href="/found?p=2&cate=found">招领启事</a></li>
+            <li><a href="/news?p=3">新闻中心</a></li>
+            <li><a href="/publish?p=4">发布启事</a></li>
+            {%if userInfo._id %}
+            <li><a href="/mycenter?myid={{userInfo._id}}">我的个人中心</a></li>
+            {%else%}
+            <li><a href="/api/login">登录/注册</a></li>
+            {%endif%}
+        </ul>
+    </nav>
+
+    <div id="wrap" class="wrap clearfloat">
+            <!--<div class="messageBox"><img src='../public/img/3.jpg'/><span class="messageTitle">标题</span><p class="introduction">简介撒大声地所多所多撒大多所撒大声地所多所</p><a class="look">查 看 详 情</a><hr/><div class="messageBoxBottom"><span class="messageTime fl">2017-1-1</span><span class="messageAuthor fr">作者</span></div></div>-->
+            {%block content%}{%endblock%}
+        <aside class="fr">
+            {% if userInfo._id %}
+            <div class="rightBox" id="userInfo" >
+                <span class="rightBoxTitle">用户信息</span>
+                <div class="line">
+                    <span>欢迎你,</span><span>{{userInfo.username}}</span>
+                </div>
+                <div class="line">
+                    <span>进入<a href="/mycenter?myid={{userInfo._id}}">个人中心</a></span>
+                </div>
+                <div class="line">
+                    <span><a href="javascript:;" id="layout">退出</a></span>
+                </div>
+            </div>
+            {%else%}
+            <div class="rightBox" id="login">
+                <span class="rightBoxTitle">登 录</span>
+                <div class="line">
+                    <span>用户名:</span><input type="text" placeholder="请输入您的账号" name="username">
+                </div>
+                <div class="line">
+                    <span class="psw">密码:</span><input type="password" placeholder="请输入您的密码" name="password">
+                </div>
+                <div class="line loginBtn">
+                    <input type="submit" value="登录" id="loginBtn">
+                </div>
+                <div class="clickRegister">还没账号？<a href="javascript:;">马上注册</a></div>
+                <div class="message"></div>
+            </div>
+            <div class="rightBox" id="register" style="display: none;">
+                <span class="rightBoxTitle">注 册</span>
+                <div class="line">
+                    <span>用户名:</span><input type="text" placeholder="请输入您的账号" name="username">
+                </div>
+                <div class="line">
+                    <span class="psw">密码:</span><input type="password" placeholder="请输入您的密码" name="password">
+                </div>
+                <div class="line">
+                    <span class="psw">确认:</span><input type="password" placeholder="请再次输入您的密码" name="repassword">
+                </div>
+                <div class="line registerBtn">
+                    <input type="submit" value="注册" id="registerBtn">
+                </div>
+                <div class="clickLogin">已有账号？<a href="javascript:;">马上登录</a></div>
+                <div class="message">*用户名必须由5-16位以字母开头、可带数字、下划线的字符组成<br/>*密码必须由6-20位字母、数字、下划线组成</div>
+            </div>
+            {%endif%}
+        </aside>
+    </div>
+    {%block foot%}
+    {%endblock%}
+    <script type="text/javascript" src="../../public/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../../public/js/main.js"></script>
+</body>
+</html>

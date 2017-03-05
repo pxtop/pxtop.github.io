@@ -1,0 +1,115 @@
+body,
+h1,
+input,
+p,
+a {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background: #f1f1f1;
+}
+input[type='text'],
+input[type='password'] {
+  height: 40px;
+  width: 270px;
+  font-size: 24px;
+  text-indent: 4px;
+}
+input[type='text'],
+input[type='password'] {
+  border: 1px solid #dddddd;
+  background-color: #fbfbfb;
+}
+.outline {
+  border: 1px solid red !important;
+  outline: red;
+}
+a {
+  text-decoration: none;
+  color: #555d66;
+  font-size: 12px;
+}
+a:hover {
+  color: #00a0d2;
+}
+#reMain {
+  display: none;
+}
+#loginMain,
+#reMain {
+  width: 320px;
+  margin: 0 auto;
+  margin-top: 4%;
+  margin-bottom: 5%;
+}
+#loginMain h1,
+#reMain h1 {
+  font-size: 36px;
+  line-height: 100px;
+  text-align: center;
+}
+#loginMain .rehere,
+#reMain .rehere {
+  height: 42px;
+  line-height: 42px;
+  border-left: 4px solid #00a0d2;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  padding-left: 14px;
+  font-size: 12px;
+}
+#loginMain .lgform,
+#reMain .lgform {
+  font-size: 12px;
+  color: #72777c;
+  padding: 24px 24px 20px 24px;
+  background: #ffffff;
+}
+#loginMain .lgform label,
+#reMain .lgform label {
+  line-height: 24px;
+  font-size: 14px;
+}
+#loginMain .lgform input[type='text'],
+#reMain .lgform input[type='text'] {
+  margin-bottom: 16px;
+}
+#loginMain .lgform .lghelp,
+#reMain .lgform .lghelp {
+  text-align: center;
+  color: red;
+  font-size: 16px;
+}
+#loginMain .lgform .loginline,
+#reMain .lgform .loginline {
+  height: 60px;
+  line-height: 60px;
+}
+#loginMain .lgform .loginline button,
+#reMain .lgform .loginline button {
+  height: 30px;
+  width: 100%;
+  cursor: pointer;
+  background-color: #0085ba;
+  border: 1px solid #006799;
+  border-radius: 2px;
+  color: #ffffff;
+  word-spacing: 20px;
+}
+#loginMain .forgetline,
+#reMain .forgetline {
+  line-height: 60px;
+  color: #69aadb;
+  font-size: 12px;
+  padding-left: 22px;
+}
+#loginMain .forgetline a,
+#reMain .forgetline a {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+#loginMain .backline,
+#reMain .backline {
+  padding-left: 24px;
+}

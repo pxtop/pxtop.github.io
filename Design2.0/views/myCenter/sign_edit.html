@@ -1,0 +1,66 @@
+{%extends 'myCenter.html'%}
+{%block center%}
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="/mycenter">首页</a></li>
+        <li><a href="/mycenter/allsigns">我发布的启事</a></li>
+        <li class="active">修改启事</li>
+    </ol>
+    <form method="post" action="/mycenter/sign_edit" enctype='multipart/form-data'>
+        <div class="form-group">
+            <label class="labelBlock">启事分类：</label>
+            {%if result.signCategory=='found'%}
+            <label class="radio-inline">
+                <input type="radio" name="signCate" value="lost">失物启事
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="signCate" value="found" checked>招领启事
+            </label>
+            {%else%}
+            <label class="radio-inline">
+                <input type="radio" name="signCate" value="lost" checked>失物启事
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="signCate" value="found">招领启事
+            </label>
+            {%endif%}
+        </div>
+        <div class="form-group">
+            <label for="signTitle">启事标题：</label>
+            <input type="text" class="form-control" id="signTitle" name="signTitle" value="{{result.signTitle}}">
+        </div>
+        <div class="form-group">
+            <label for="signCon">启事内容：</label>
+            <textarea class="form-control" rows="3" id="signCon">{{result.signContent}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="signName">联系人：</label>
+            <input type="text" class="form-control" id="signName" name="signName" value="{{result.signName}}"></input>
+        </div>
+        <div class="form-group">
+            <label for="signWay">联系方式：</label>
+            <input class="form-control" id="signWay" name="signWay" value="{{result.signWay}}"></input>
+        </div>
+        <div id="sendimg">
+            {%if result.signImgs[0].oldname!=='noPic'%}
+            <label class="labelBlock">已上传图片：</label>
+                {%for img in result.signImgs%}
+                <img src="{{img.src}}" class="signimg">
+                {%endfor%}
+                <br/>
+                <br/>
+                <label for="fileup" class="btn btn-default">重新上传图片</label> <button class="btn btn-default">添加图片</button>
+                <input type="file" id="fileup" style="display: none;"/>
+            {%else%}
+                <div class="form-group">
+                    <label for="upfile">上传图片：</label>
+                    <input type="file" id="upfile" accept="image/png,image/jpeg"  multiple="true"/>
+                </div>
+            {%endif%}
+        </div>
+        <p class="help-block">Example block-level help text here.</p>
+        <button type="submit" class="btn btn-primary">保 存</button>
+        <a href="/mycenter/allsigns" class="btn btn-default">取 消</a>
+    </form>
+</div>
+{%endblock%}

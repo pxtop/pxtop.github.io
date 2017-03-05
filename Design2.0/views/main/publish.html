@@ -1,0 +1,55 @@
+{%extends 'layout.html'%}
+{%block content%}
+<section class="fl">
+    <div id="sign">
+        {%if userInfo._id%}
+        <form class="signBorder" method="post" enctype='multipart/form-data'>
+            <div class="signStyle">
+                <span>分类:</span>
+                <input type="radio" name="category" value="lost" required> 失物启事
+                <input type="radio" name="category" value="found" required> 招领启事
+            </div>
+            <div class="signStyle">
+                <span>标题:</span>
+                <input type="text" name="signTitle" placeholder="请输入标题" required size="20">
+            </div>
+            <div class="signStyle signContent">
+                <span>内容:</span>
+                <textarea name="signContent" required></textarea>
+            </div>
+            <div class="signStyle">
+                <span>联系人:</span>
+                <input type="text" name="signName" placeholder="请输入联系人名称" required>
+            </div>
+            <div class="signStyle">
+                <span>联系方式:</span>
+                <input type="text" name="signWay" placeholder="请输入联系方式" required>
+            </div>
+            <div class="signStyle">
+                <span>上传图片:</span>
+                <input id="signImgs" type="file" multiple="true" accept="image/png,image/jpeg" name="signImgs" value="选择图片">
+            </div>
+            <!--<div class="signStyle">
+                <input id="reChoose" type="button" multiple name="reChoose" value="重新选择图片">
+            </div>-->
+            <div class="signStyle">
+                <input id="sendSign" type="submit" name="sendSign" value="发 布 启 事">
+            </div>
+            {%if warning%}
+            <div class="signStyle" id="warning">
+                {{warning}}
+            </div>
+            {%endif%}
+        </form>
+        {%else%}
+        <span style="font-size: 20px;">本功能需要<a href="/api/login">登录</a>!</span>
+        {%endif%}
+    </div>
+</section>
+{%endblock%}
+{%block foot%}
+<footer class="">
+    <div>本站所有资源搜集于互联网</div>
+    <div>友链合作联系1194941106@qq.com</div>
+</footer>
+{%endblock%}

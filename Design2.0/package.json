@@ -1,0 +1,19 @@
+{
+  "name": "design2.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cookies": "^0.6.2",
+    "express": "^4.14.0",
+    "formidable": "^1.1.1",
+    "mongoose": "^4.7.8",
+    "swig": "^1.4.2"
+  }
+}

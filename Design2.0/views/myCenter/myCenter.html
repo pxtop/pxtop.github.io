@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<link rel="stylesheet" href="../../public/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../../public/css/center.css"/>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand">个人中心</span>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">首 页</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人信息管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/mycenter/psw_edit">修改密码</a></li>
+                        <li><a href="/mycenter/username_edit">修改用户名</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">失物招领启事管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/mycenter/allsigns">我发布的启事</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">消 息<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">站内信<span class="badge">0</span></a></li>
+                        <li><a href="/mycenter/allsigns">评 论<span class="badge">0</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{userInfo.username}}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/">返回首页</a></li>
+                        <li><a href="#">消息
+                            {%if messageLen==0%}
+                            {%else%}
+                            <span class="badge">{{messageLen}}</span>
+                            {%endif%}
+                        </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" id="outBtn">退 出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    {%block center%}{%endblock%}
+</div>
+
+<script type="text/javascript" src="../../public/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../public/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../public/js/center.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{%extends 'myCenter.html'%}
+{%block center%}
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="/mycenter">首页</a></li>
+        <li class="active">修改用户名</li>
+    </ol>
+    <form method="post" action="/mycenter/username_edit">
+        <div class="form-group">
+            <label for="newName">新用户名：</label>
+            <input type="text" class="form-control" name="newName" id="newName" placeholder="请输入新用户名" style="width:300px;">
+        </div>
+        <p class="help-block">这里是提示信息</p>
+        <button type="submit" class="btn btn-primary">确认修改</button>
+        <a href="/mycenter" class="btn btn-default">取消修改</a>
+    </form>
+</div>
+{%endblock%}

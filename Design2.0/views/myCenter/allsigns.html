@@ -1,0 +1,56 @@
+{%extends 'myCenter.html'%}
+{%block center%}
+<div class="modal fade" tabindex="-1" role="dialog" id="truedel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提 示</h4>
+            </div>
+            <div class="modal-body">
+                <p>确认删除这条启事？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <a href="#" class="btn btn-primary" id="yesdel">确认删除</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="/mycenter">首页</a></li>
+        <li class="active">我发布的启事</li>
+    </ol>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>分类</th>
+                <th>标题</th>
+                <th>内容</th>
+                <th>时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sign in result%}
+            <tr>
+                <td scope="row">{{ loop.index }}</td>
+                {%if sign.signCategory=='found'%}
+                <td>招领启事</td>
+                {%else%}
+                <td>失物启事</td>
+                {%endif%}
+                <td>{{sign.signTitle}}</td>
+                <td>{{sign.signContent.substr(1,10)+'···'}}</td>
+                <td>{{sign.signTime|date('y-m-d H:i:s', -8*60)}}</td>
+                <td><a href="/details?signid={{sign._id.toString()}}">查看</a> / <a href="/mycenter/sign_edit?signid={{sign._id.toString()}}">编辑</a> / <a href="#" class="deltrue" name="{{sign._id.toString()}}">删除</a></td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+{%endblock%}

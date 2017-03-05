@@ -1,0 +1,637 @@
+body,
+a,
+span,
+ul,
+li,
+ol,
+input,
+form,
+h1,
+h3,
+h5,
+img,
+p,
+hr,
+textarea {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+input {
+  outline: none;
+  border: none;
+}
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0;
+}
+.clearfloat {
+  zoom: 1;
+}
+body {
+  background: #87b1ba;
+  font-size: 0;
+}
+p {
+  word-wrap: break-word;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+a {
+  text-decoration: none;
+  color: #999;
+}
+a:hover {
+  text-decoration: none;
+}
+.wrap {
+  margin: 0 auto;
+}
+.wrap .glyphicon {
+  display: none;
+  cursor: pointer;
+}
+.wrap .glyphicon:hover {
+  color: #31b0d5;
+}
+@media (min-width: 1300px) {
+  .wrap {
+    width: 1280px;
+  }
+  .wrap section {
+    width: 970px;
+  }
+}
+@media (max-width: 1300px) and (min-width: 1000px) {
+  .wrap {
+    width: 970px;
+  }
+  .wrap section {
+    width: 650px;
+  }
+}
+@media (max-width: 1000px) and (min-width: 650px) {
+  .wrap {
+    width: 646px;
+  }
+  .wrap .lgRe {
+    display: block !important;
+  }
+  .wrap .opinion {
+    display: none;
+  }
+  #webLogo {
+    height: 100px !important;
+  }
+  #webLogo h1 {
+    font-size: 36px !important;
+    line-height: 100px !important;
+  }
+  aside {
+    display: none !important;
+  }
+  section {
+    width: 646px;
+    margin: 24px auto !important;
+    float: none !important;
+  }
+}
+@media (max-width: 660px) {
+  .wrap {
+    width: 100%;
+  }
+  .wrap #webTitle {
+    display: block !important;
+  }
+  .wrap .navList1 {
+    display: none;
+  }
+  .wrap .navList2 {
+    width: 100%;
+    background: #363636;
+    position: absolute;
+    display: none;
+    top: 48px;
+    left: 0;
+    z-index: 888;
+  }
+  .wrap .navList2 .active {
+    background: #0099ff;
+  }
+  .wrap .navList2 li a {
+    display: block;
+    height: 48px;
+    color: #ffffff;
+    line-height: 48px;
+    padding: 0 25px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .wrap .navList2 li a:hover {
+    background: #0099ff;
+    color: #ffffff;
+  }
+  .wrap .glyphicon {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 26px;
+    line-height: 48px;
+    margin-right: 10px;
+  }
+  #webLogo {
+    display: none;
+  }
+  aside {
+    display: none !important;
+  }
+  section {
+    width: 310px;
+    margin: 24px auto !important;
+    float: none !important;
+  }
+}
+header {
+  height: 32px;
+  background: #ffffff;
+  color: #999;
+  width: 100%;
+}
+header .headList {
+  height: 100%;
+  line-height: 32px;
+  font-size: 16px;
+  margin: 0 auto;
+}
+header .headList .lgRe {
+  display: none;
+}
+header .headList span {
+  display: inline-block;
+}
+header .headList a {
+  display: inline-block;
+}
+header .headList a:hover {
+  color: #0099ff;
+}
+#webLogo {
+  height: 180px;
+  padding: 0 24px;
+}
+#webLogo h1 {
+  font-size: 60px;
+  line-height: 180px;
+}
+nav {
+  height: 48px;
+  position: relative;
+  background: #363636;
+  color: #ffffff;
+}
+nav #webTitle {
+  float: left;
+  font-size: 20px;
+  color: #ffffff;
+  line-height: 48px;
+  text-indent: 0.5em;
+  display: none;
+}
+nav .navList1 {
+  display: inline-block;
+}
+nav .navList1 .active {
+  background: #0099ff;
+}
+nav .navList1 li {
+  display: inline-block;
+}
+nav .navList1 li a {
+  display: inline-block;
+  height: 48px;
+  color: #ffffff;
+  line-height: 48px;
+  padding: 0 25px;
+  font-weight: bold;
+  font-size: 16px;
+}
+nav .navList1 li a:hover {
+  background: #0099ff;
+  color: #ffffff;
+}
+nav .search {
+  font-size: 16px;
+  position: relative;
+}
+nav .search span {
+  display: inline-block;
+  line-height: 48px;
+  padding: 0 20px;
+  text-align: center;
+}
+nav .search span:hover {
+  cursor: pointer;
+  text-align: center;
+}
+nav .search .search_form {
+  position: absolute;
+  z-index: 999;
+  top: 48px;
+  right: 0px;
+  font-size: 16px;
+  line-height: 60px;
+  width: 270px;
+  height: 60px;
+  color: #000000;
+  padding: 0 20px;
+  background-color: #0099ff;
+  display: none;
+}
+nav .search .search_form input {
+  display: inline-block;
+}
+nav .search .search_form .search_val {
+  width: 170px;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 0.5em;
+}
+nav .search .search_form .search_btn {
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+  background: #363636;
+  color: #ffffff;
+  margin-left: 8px;
+}
+section {
+  margin: 20px 0;
+  position: relative;
+}
+section #sign {
+  background: #ffffff;
+  width: 100%;
+  padding: 10px;
+}
+section #sign #warning {
+  color: #c9302c;
+  text-align: center;
+}
+section #sign .signBorder {
+  border: 1px dashed #8a6d3b;
+  padding: 10px;
+}
+section #sign .signBorder .signContent textarea {
+  width: 100%;
+  text-indent: 0.5em;
+  line-height: 24px;
+  font-size: 16px;
+  height: 120px;
+}
+section #sign .signBorder .signStyle {
+  font-size: 18px;
+  line-height: 40px;
+}
+section #sign .signBorder .signStyle span {
+  display: block;
+  font-size: 22px;
+  font-weight: bold;
+}
+section #sign .signBorder .signStyle input[type=file] {
+  width: 100%;
+  line-height: normal;
+}
+section #sign .signBorder .signStyle input[type=submit],
+section #sign .signBorder .signStyle input[type=button] {
+  width: 100%;
+  margin-top: 12px;
+  cursor: pointer;
+}
+section #sign .signBorder .signStyle input[type=submit]:active,
+section #sign .signBorder .signStyle input[type=button]:active {
+  background: #31b0d5;
+  color: #ffffff;
+}
+section #sign .signBorder .signStyle input[type=text] {
+  border: 1px solid #5e5e5e;
+  width: 100%;
+  height: 34px;
+  text-indent: 0.5em;
+}
+section #comment {
+  font-size: 20px;
+  background: #ffffff;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+}
+section #comment .commentBox {
+  padding: 0 6px;
+  border-bottom: 1px solid #8a6d3b;
+  margin-bottom: 4px;
+}
+section #comment .commentBox .commentMessage {
+  border-bottom: 1px dashed #000000;
+}
+section #comment .commentBox .commentMessage span {
+  font-size: 14px;
+}
+section #comment .commentBox .commentMessage .centerspan {
+  margin-left: 20%;
+  color: #00a0d2;
+}
+section #comment .commentBox p {
+  font-size: 16px;
+  line-height: 30px;
+}
+section #comment .commentBox .likeAndtread span,
+section #comment .commentBox .likeAndtread a {
+  display: inline-block;
+  color: #000000;
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: 4px;
+  vertical-align: top;
+}
+section #comment .commentBox .likeAndtread span:hover {
+  color: #c9302c;
+}
+section #comment .commentBox .likeAndtread a:hover {
+  color: #0099ff;
+}
+section #comment .commentTitle {
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 5px solid #0099ff;
+  margin-bottom: 6px;
+}
+section #comment .commentTitle h5 {
+  font-size: 22px;
+  line-height: 40px;
+}
+section #comment .sendComment .pleaseLogin {
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+  text-align: center;
+  background: #31b0d5;
+  color: #ffffff;
+}
+section #comment .sendComment .pleaseLogin a {
+  color: #5e5e5e;
+}
+section #comment .sendComment .pleaseLogin a:hover {
+  color: #000;
+}
+section #comment .sendComment .commentForm {
+  margin-bottom: 10px;
+}
+section #comment .sendComment .commentForm textarea {
+  width: 100%;
+  color: #000000;
+  font-size: 16px;
+  height: 80px;
+  padding: 4px;
+}
+section #comment .sendComment .commentForm .sendBtn {
+  display: block;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  color: #ffffff;
+  background: #31b0d5;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+section #comment .sendComment .commentForm .sendBtn:hover {
+  color: #000000;
+}
+section #detailPage {
+  background: #ffffff;
+  font-size: 16px;
+  line-height: 22px;
+  width: 100%;
+  padding: 10px;
+}
+section #detailPage .detailTitle {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 40px;
+}
+section #detailPage .geduan {
+  height: 5px;
+  background-color: #0099ff;
+}
+section #detailPage .glyphicon,
+section #detailPage .detailMessage {
+  display: inline-block;
+  font-size: 14px;
+  color: #999999;
+  line-height: 38px;
+}
+section #detailPage .detailMessage {
+  margin-left: 4px;
+  margin-right: 10px;
+}
+section #detailPage .detailImgs img {
+  display: inline-block;
+  width: 290px;
+  border: 1px solid #c0a16b;
+  margin-bottom: 4px;
+  margin-right: 20px;
+}
+section #detailPage .detailContent {
+  margin-top: 12px;
+  text-indent: 2em;
+}
+section #detailPage .detailContact {
+  line-height: 40px;
+  font-size: 18px;
+  font-weight: bold;
+}
+section #detailPage .detailContact .ContactContent {
+  font-weight: normal;
+}
+section .messageBox {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 10px 0 10px;
+  font-size: 16px;
+  background: #ffffff;
+}
+section .messageBox img {
+  width: 290px;
+}
+section .messageBox .messageTitle,
+section .messageBox .introduction,
+section .messageBox .messageBoxBottom {
+  display: block;
+  height: 30px;
+  width: 290px;
+  line-height: 30px;
+  font-size: 18px;
+  color: #000000;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+section .messageBox .messageTitle {
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+}
+section .messageBox .introduction {
+  white-space: normal;
+  height: 60px;
+}
+section .messageBox .look {
+  display: block;
+  line-height: 40px;
+  font-size: 24px;
+  margin: 6px 0;
+  color: #ffffff;
+  background: #31b0d5;
+  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+}
+section .messageBox .look:hover {
+  color: #000000;
+}
+section .messageBox .look:active {
+  background-color: #8a6d3b;
+}
+section .messageBox hr {
+  border-color: #8a6d3b;
+}
+aside {
+  display: inline-block;
+  width: 300px;
+}
+aside .rightBox {
+  font-size: 16px;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  margin-top: 20px;
+}
+aside .rightBoxTitle {
+  display: block;
+  height: 34px;
+  line-height: 34px;
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 3px solid #0099ff;
+  margin-bottom: 10px;
+}
+aside .message {
+  text-align: center;
+  line-height: 30px;
+  color: #c9302c;
+}
+aside #login .outline,
+aside #register .outline,
+aside #userInfo .outline {
+  border: 1px solid red;
+}
+aside #login input,
+aside #register input,
+aside #userInfo input {
+  border: 1px solid #dddddd;
+}
+aside #login .line,
+aside #register .line,
+aside #userInfo .line {
+  height: 44px;
+  line-height: 44px;
+}
+aside #login .line span,
+aside #register .line span,
+aside #userInfo .line span {
+  margin-left: 8px;
+}
+aside #login .line span a,
+aside #register .line span a,
+aside #userInfo .line span a {
+  color: #c0a16b;
+}
+aside #login .line span a:hover,
+aside #register .line span a:hover,
+aside #userInfo .line span a:hover {
+  color: #5bc0de;
+}
+aside #login .line input,
+aside #register .line input,
+aside #userInfo .line input {
+  width: 180px;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 0.5em;
+  margin-left: 6px;
+}
+aside #login .line .psw,
+aside #register .line .psw,
+aside #userInfo .line .psw {
+  padding-left: 1em;
+}
+aside #login .loginBtn,
+aside #register .loginBtn,
+aside #userInfo .loginBtn,
+aside #login .registerBtn,
+aside #register .registerBtn,
+aside #userInfo .registerBtn {
+  margin-left: 60px;
+}
+aside #login .loginBtn input,
+aside #register .loginBtn input,
+aside #userInfo .loginBtn input,
+aside #login .registerBtn input,
+aside #register .registerBtn input,
+aside #userInfo .registerBtn input {
+  background: #0099ff;
+  color: #ffffff;
+  letter-spacing: 14px;
+}
+aside #login .clickRegister,
+aside #register .clickRegister,
+aside #userInfo .clickRegister,
+aside #login .clickLogin,
+aside #register .clickLogin,
+aside #userInfo .clickLogin {
+  line-height: 30px;
+  font-size: 14px;
+  margin-left: 120px;
+}
+aside #login .clickRegister a,
+aside #register .clickRegister a,
+aside #userInfo .clickRegister a,
+aside #login .clickLogin a,
+aside #register .clickLogin a,
+aside #userInfo .clickLogin a {
+  display: inline-block;
+  color: #5bc0de;
+}
+footer {
+  width: 100%;
+  height: 100px;
+  border-top: 5px solid #0099ff;
+  margin-top: 20px;
+  background: #222222;
+  color: #666666;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  padding-top: 24px;
+}

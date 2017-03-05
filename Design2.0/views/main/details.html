@@ -1,0 +1,63 @@
+{%extends 'layout.html'%}
+{%block content%}
+<section class="fl">
+    <div id="detailPage">
+        <h3 class="detailTitle">{{result.signTitle}}</h3>
+        <div class="geduan"></div>
+        <span class="glyphicon glyphicon-user"></span><span class="detailMessage">{{result.author.username}}</span><span class="glyphicon glyphicon-list-alt"></span>
+        {%if result.signCategory=='found'%}
+        <span class="detailMessage">招领启事</span>
+        {%else%}
+        <span class="detailMessage">失物启事</span>
+        {%endif%}
+        <span class="glyphicon glyphicon-calendar"></span><span class="detailMessage">{{result.signTime|date('y-m-d H:i:s', -8*60)}}</span>
+        <div class="detailImgs">
+            {% for img in result.signImgs%}
+            <img src="{{img.src}}">
+            {%endfor%}
+        </div>
+        <p class="detailContent">{{result.signContent}}</p>
+        <div class="detailContact">
+            <span class="ContactWay">联系人:</span><span class="ContactContent">{{result.signName}}</span><br/>
+            <span class="ContactWay">联系方式:</span><span class="ContactContent">{{result.signWay}}</span>
+       </div>
+    </div>
+    <div id="comment">
+        <div class="commentTitle">
+            <h5 class="fl">评 论</h5>
+            <div class="fr">共<span>{{result.signComments.length}}</span>条评论</div>
+        </div>
+        <div class="sendComment">
+            {%if !userInfo._id%}
+            <div class="pleaseLogin">发表评论需要登录，请先<a href="/api/login">登录</a>！</div>
+            {%else%}
+            <form class="commentForm" method="post" action="/details">
+                <textarea name="commentContent" required id="comContent"></textarea>
+                <input type="hidden" name="signid" value="{{result.id}}">
+                <input type="submit" class="sendBtn" id="sendCom" value="发 表 评 论">
+                <p class="help-block" id="comTip"></p>
+            </form>
+            {%endif%}
+        </div>
+      <div class="commentsList">
+            {%if !result.signComments[0]%}
+            <span style="font-size:18px;line-height: 30px;">还没有评论，赶快抢沙发！</span>
+            {%else%}
+                {%for com in result.signComments%}
+                <div class="commentBox">
+                    <div class="clearfloat commentMessage"><span class="fl">{{com.comName.username}}</span><span class="fl centerspan">{{loop.index}} 楼</span><span class="fr">{{com.comTime|date('Y-m-d H:i:s', -8*60)}}</span></div>
+                    <p>回复：{{com.comContent}}</p>
+                </div>
+                {%endfor%}
+            {%endif%}
+        </div>
+    </div>
+</section>
+<script src="../../public/js/comment.js"></script>
+{%endblock%}
+{%block foot%}
+<footer class="">
+    <a href="#">管理员入口</a>
+    <div>友链合作联系1194941106@qq.com</div>
+</footer>
+{%endblock%}
