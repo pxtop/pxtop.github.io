@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		#wrap{margin: 0 auto;width: 550px;height: 550px;background: pink;position: relative;overflow: hidden;border: 1px solid black;}
+		#wrap .area{width: 50px;height: 50px;float: left;border-radius:50% ;border: 1px solid pink;}
+		#lines{position: absolute;top:-10px;left:-10px;width: 600px;height: 600px;}
+		#wrap .line{width: 50px;height: 50px;border: 1px solid #000000;float: left;}
+		#areas{margin-left:15px;margin-left:15px;position: absolute;top:15px;left:0px;z-index: 999;}
+	</style>
+	<script>
+		window.onload=function(){
+			var str1='';
+			var str2='';
+			var flag=true;//黑  or 白
+			var x=null;//行数
+			var y=null;//列数
+			var tArray = new Array();  //先声明一维
+			var oWrap=document.getElementById('wrap');
+			var oAreas=document.getElementById('areas');
+			var oLines=document.getElementById('lines');
+			var aArea=oAreas.getElementsByTagName('div');
+			var aLines=oLines.getElementsByTagName('div');
+			var tArray = new Array();  //先声明一维
+			for(var k=0;k<10;k++){    //一维长度为k,k为变量，可以根据实际情况改变			 
+				tArray[k]=new Array();  //声明二维，每一个一维数组里面的一个元素都是一个数组；				 
+				for(var j=0;j<10;j++){   //一维数组里面每个元素数组可以包含的数量j，j也是一个变量；			 
+					tArray[k][j]="";    //这里将变量初始化，我这边统一初始化为空，后面在用所需的值覆盖里面的值k是列，j是行
+				 }
+			}
+			//生成放棋子的格子
+			for(var i=0;i<100;i++){
+				str1+="<div class='area'></div>"
+			}
+			oAreas.innerHTML=str1;
+			//生成棋盘格子条纹
+			for(var i=0;i<120;i++){
+				str2+="<div class='line'></div>"
+			}
+			oLines.innerHTML=str2;
+			function start(){
+				str1='';
+				flag=true;//黑  or 白
+				x=null;//行数
+				y=null;//列数
+				tArray = new Array();  //先声明一维数组
+				for(var k=0;k<10;k++){    //一维长度为k	 
+					tArray[k]=new Array();  //声明二维，每一个一维数组里面的一个元素都是一个数组；				 
+					for(var j=0;j<10;j++){   //一维数组里面每个元素数组可以包含的数量j		 
+						tArray[k][j]="";    //统一初始化为空，后面在用所需的值覆盖里面的值，k是列，j是行
+					 }
+				}
+				//生成放棋子的格子
+				for(var i=0;i<100;i++){
+					str1+="<div class='area'></div>"
+				}
+				oAreas.innerHTML=str1;
+				//落子检测
+				for(var j=0;j<100;j++){
+					aArea[j].index=j;
+					aArea[j].onclick=function(){
+						if(this.style.backgroundColor){
+							return false;
+						}else{
+							x=parseInt(this.index/10);//x是行
+							y=this.index%10;//y是列  %取余
+							if(flag){
+								this.style.backgroundColor='#FFFFFF';
+								tArray[x][y]='bai';
+							}else{
+								this.style.backgroundColor='#000000';
+								tArray[x][y]='hei';							
+							}
+							flag=!flag;
+							win(x,y);
+						}
+					}
+				}
+			}
+			start();
+			//判断胜负函数
+			function win(x,y){
+				var hangbai=0;
+				var hanghei=0;
+				var liebai=0;
+				var liehei=0;
+				var zhenxiebai=0;
+				var zhenxiehei=0;
+				var fanxiehei=0;
+				var fanxiebai=0;
+				if(tArray[x][y]=='hei'){
+					//扫描行
+					for(var i=y;i<10;i++){
+						if(tArray[x][i]==''){
+							break;
+						}else{
+							if(tArray[x][i]=='bai'){
+									break;
+							}else{
+								hanghei++;	
+							}
+						}
+					}
+					for(var i=y-1;i>=0;i--){
+						if(tArray[x][i]==''){
+							break;
+						}else{
+							if(tArray[x][i]=='bai'){
+									break;
+							}else{
+								hanghei++;	
+							}
+						}
+					}
+					//扫描列
+					for(var i=x;i<10;i++){
+						if(tArray[i][y]==''){
+							break;
+						}else{
+							if(tArray[i][y]=='bai'){
+								break;	
+							}else{
+								liehei++;
+							}
+						}
+					}
+					for(var i=x-1;i>=0;i--){
+						if(tArray[i][y]==''){
+							break;
+						}else{
+							if(tArray[i][y]=='bai'){
+								break;	
+							}else{
+								liehei++;
+							}
+						}
+					}
+					//扫描左下到右上
+					for(var i=x,j=y;i<10&&j>=0;i++&&j--){
+						if(tArray[i][j]==''){
+							break;
+						}else{
+							if(tArray[i][j]=='bai'){
+								break;
+							}else{
+								zhenxiehei++;
+							}
+						}
+					}
+					for(var i=x-1,j=y+1;i>=0&&j<10;i--&&j++){
+						if(tArray[i][j]==''){
+							break;
+						}else{
+							if(tArray[i][j]=='bai'){
+								break;
+							}else{
+								zhenxiehei++;
+							}
+						}	
+					}
+					//扫描左上到右下
+					for(var i=x,j=y;i<10&&j<10;i++&&j++){
+						if(tArray[i][j]==''){
+							break;
+						}else{
+							if(tArray[i][j]=='bai'){
+								break;	
+							}else{
+								fanxiehei++;
+							}
+						}	
+					}
+					for(var i=x-1,j=y-1;i>=0&&j>=0;i--&&j--){
+						if(tArray[i][j]==''){
+							break;
+						}else{
+							if(tArray[i][j]=='bai'){
+								break;	
+							}else{
+								fanxiehei++;
+							}
+						}	
+					}					
+					if(hanghei>=5 || liehei>=5 || zhenxiehei>=5 || fanxiehei>=5){
+						if(confirm('黑棋赢了！需要重新开始吗？')){
+							start();
+						}
+					}
+				}
+				if(tArray[x][y]=='bai'){
+					//扫描行
+					for(var i=y;i<10;i++){
+						if(tArray[x][i]==''){
+							break;
+						}else{
+							if(tArray[x][i]=='hei'){
+									break;
+							}else{
+								hangbai++;	
+							}
+						}
+					}
+					for(var i=y-1;i>=0;i--){
+						if(tArray[x][i]==''){
+							break;
+						}else{
+							if(tArray[x][i]=='hei'){
+									break;
+							}else{
+								hangbai++;	
+							}
+						}
+					}
+					//扫描列
+					for(var i=x;i<10;i++){
+						if(tArray[i][y]==''){
+							break;
+						}else{
+							if(tArray[i][y]=='hei'){
+								break;	
+							}else{
+								liebai++;
+							}
+						}
+					}
+					for(var i=x-1;i>=0;i--){
+						if(tArray[i][y]==''){
+							break;
+						}else{
+							if(tArray[i][y]=='hei'){
+								break;	
+							}else{
+								liebai++;
+							}
+						}
+					}
+					//扫描左下到右上
+					for(var i=x,j=y;i<10&&j>=0;i++&&j--){
+						if(tArray[i][j]==''){
+							break;
+						}else{
+							if(tArray[i][j]=='hei'){
+								break;
+							}else{
+								zhenxiebai++;
+							}
+						}
+					}
+					for(var i=x-1,j=y+1;i>=0&&j<10;i--&&j++){
+						if(tArray[i][j]==''){
+							break;
+						}else{
+							if(tArray[i][j]=='hei'){
+								break;
+							}else{
+								zhenxiebai++;
+							}
+						}	
+					}
+					//扫描左上到右下
+					for(var i=x,j=y;i<10&&j<10;i++&&j++){
+						if(tArray[i][j]==''){
+							break;
+						}else{
+							if(tArray[i][j]=='hei'){
+								break;	
+							}else{
+								fanxiebai++;
+							}
+						}	
+					}
+					for(var i=x-1,j=y-1;i>=0&&j>=0;i--&&j--){
+						if(tArray[i][j]==''){
+							break;
+						}else{
+							if(tArray[i][j]=='hei'){
+								break;	
+							}else{
+								fanxiebai++;
+							}
+						}	
+					}
+					if(hangbai>=5 || liebai>=5 || zhenxiebai>=5 || fanxiebai>=5){
+						if(confirm('白棋赢了！需要重新开始吗？')){
+							start();
+						}
+					}
+				}
+			}
+		}
+	</script>
+	<body>
+		<!--棋盘最外围-->
+		<div id="wrap">
+			<!--棋盘格子-->
+			<div id="areas"></div>
+			<!--棋盘格子线-->
+			<div id="lines"></div>
+		</div>
+	</body>
+</html>
+
