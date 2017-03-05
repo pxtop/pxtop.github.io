@@ -1,0 +1,35 @@
+{% extends 'layout.html'%}
+{% block main %}
+<ol class="breadcrumb">
+ <li><a href="/admin">后台管理</a></li>
+ <li class="active">编辑文章</li>
+</ol>
+<h4>编辑文章</h4>
+<form role="form" method="post">
+ <div class="form-group">
+  <label for="newcategory">文章分类</label>
+  <select id="newcategory" name="newcategory" class="form-control">
+   {% for category in categories %}
+       {% if content.category._id.toString()==category._id.toString() %}
+           <option value="{{category._id.toString()}}" selected>{{category.name}}</option>
+       {%else%}
+           <option value="{{category._id.toString()}}">{{category.name}}</option>
+       {%endif%}
+   {% endfor %}
+  </select>
+ </div>
+ <div class="form-group">
+  <label for="newtitle">文章标题</label>
+  <input type="text" class="form-control" id="newtitle" name="newtitle" value="{{content.title}}" placeholder="请输入文章标题">
+ </div>
+ <div class="form-group">
+  <label for="newdescription">文章简介</label>
+  <textarea id="newdescription" class="form-control" rows="3"  name="newdescription" value="{{content.description}}" placeholder="请输入文章简介"></textarea>
+ </div>
+ <div class="form-group">
+  <label for="newcontent">文章内容</label>
+  <textarea id="newcontent" class="form-control" rows="8" name="newcontent" value="{{content.content}}" placeholder="请输入文章内容"></textarea>
+ </div>
+ <button type="submit" class="btn btn-default col-sm-1">提交</button>
+</form>
+{%endblock%}

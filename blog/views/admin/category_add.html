@@ -1,0 +1,21 @@
+{% extends 'layout.html'%}
+{% block main %}
+<ol class="breadcrumb">
+    <li><a href="/admin">后台管理</a></li>
+    <li class="active">添加分类</li>
+</ol>
+<h4>添加分类</h4>
+<form class="form-horizontal" role="form" method="post">
+    <div class="form-group">
+        <label class="col-sm-1 control-label" for="name">分类名称</label>
+        <div class="col-sm-11">
+            <input type="text" class="form-control" id="name" name="name" placeholder="请输入待添加的分类名称">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-1  col-sm-1">
+            <button type="submit" class="btn btn-primary btn-block">提交</button>
+        </div>
+    </div>
+</form>
+{%endblock%}
